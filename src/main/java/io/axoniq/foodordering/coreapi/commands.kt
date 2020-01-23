@@ -1,21 +1,25 @@
 package io.axoniq.foodordering.coreapi
 
-class CreateFoodCardCommand
+import org.axonframework.commandhandling.RoutingKey
+import org.axonframework.modelling.command.TargetAggregateIdentifier
+import java.util.*
 
+class CreateFoodCartCommand(
+        @RoutingKey val foodCartId: UUID
+)
 
 data class SelectProductCommand(
-        val foodCartId:UUID,
-        val productId:UUID,
-        val quantity:Int
+        @TargetAggregateIdentifier val foodCartId: UUID,
+        val productId: UUID,
+        val quantity: Int
 )
 
 data class DeselectProductCommand(
-        val foodCartId:UUID,
-        val productId:UUID,
-        val quantity:Int
+        @TargetAggregateIdentifier val foodCartId: UUID,
+        val productId: UUID,
+        val quantity: Int
 )
 
-
 data class ConfirmOrderCommand(
-        val foodCartId:UUID
+        @TargetAggregateIdentifier val foodCartId: UUID
 )
